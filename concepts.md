@@ -1,8 +1,7 @@
-# nlp
+
 ## naive bayes and sentiment classification
-> 
-$c\hat=argmaxP(c|d)$ posterior probability
-> $P(x|y)=\frac{P(y|x)*P(x)}{P(y)}$
+ $c\hat=argmaxP(c|d)$  posterior probability
+ $P(x|y)=\frac{P(y|x)*P(x)}{P(y)}$
 so
 $$\hat c  =argmaxP(c|d)(c\isin C )=\frac{P(d|c)*P(c)}{P(d)\tag{1}}$$
 当前分类的概率就是 已知分类是此文档的概率*是此分类的概率（此分类在所有分类中的占比） 
@@ -24,7 +23,7 @@ $$P(d|c)=P(f1f2f3...fk|c)\tag{2}$$
 $$c_{NB}=argmax_{c\isin C}P(c) multiple P(w_i|c)$$
 取对数处理之后可以写成加法形式
 
-一些优化方法
+## 一些优化方法
 ### binary multinomial naive Bayes 
 原理：在分类的时候，一个词语的出现与否比它的出现次数重要，防止出现次数在一句话中的过多出现对结果的影响（十句话中，某个词在**每一句话中都出现了**比**只在一句话中出现十次**中出现更能代表这一类的特侦和）  
 做法：删除一句话中重复出现的词语
