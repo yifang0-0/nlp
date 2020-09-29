@@ -20,14 +20,26 @@ $$P(d|c)=P(f1f2f3...fk|c)\tag{2}$$
 ## naive bayes assumption
 - 将一系列特征的总体概率转化为每一个相互无关的（基于 bag of words）特征的概率乘积
 最后的等式就是
-$$c_{NB}=argmax_{c\isin C}P(c) multiple P(w_i|c)$$
+$$c_{NB}=argmax_{c\isin C}P(c) ∏ P(w_i|c)$$
 取对数处理之后可以写成加法形式
 
 ## 一些优化方法
 ### binary multinomial naive Bayes 
-原理：在分类的时候，一个词语的出现与否比它的出现次数重要，防止出现次数在一句话中的过多出现对结果的影响（十句话中，某个词在**每一句话中都出现了**比**只在一句话中出现十次**中出现更能代表这一类的特侦和）  
+原理：在分类的时候，一个词语的出现与否比它的出现次数重要，防止出现次数在一句话中的过多出现对结果的影响（十句话中，某个词在**每一句话中都出现了**比**只在一句话中出现十次**中出现更能代表这一类的特征）  
 做法：删除一句话中重复出现的词语
 ### deal with negation
 原理：否定词会对句子的含义产生影响，即使其他词是相同的
 做法：将这一句话的剩余词语加上NOT_为前缀（作为新的词统计）
 ### use lexicons
+原理：在训练集数据很少
+## 评价模型
+
+||gold positive|gold nagetive||
+|--|--|--|--|
+| **system output positive**|true positive | false negative|$precision=\frac{tp}{tp+fn}$|
+| **system output negative**|false positive | true negative|
+||$recall=\frac{tp}{tp+fp}$||$accuracy=\frac{tp+tn}{tp+fp+fn+tn}$||
+- 对于同一个模型，accuracy越高越好，但是有的时候需要考虑模型在两种方面的能力。
+- precision衡量的是检出信息的准确率:新闻搜索
+- recall衡量的是检出信息的完整率:专利查找
+- accuracy是两个方面的综合考虑
